@@ -7,22 +7,76 @@
 </head>
 <body>
     <div>
-        <table>
-            <tr><th>USERS</th></tr>
+        <table border="1">
+            <caption><b>USERS</b></caption>
             <tr>
+                <th>HTTP Methods</th>
                 <th>PATH</th>
-                <th></th>
-                <th></th>
+                <th>DESCRIPTION</th>
             </tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
+            <tr>
+                <td>GET</td>
+                <td>/users</td>
+                <td>Get all users</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/users/:id</td>
+                <td>Get A single user</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/users/register</td>
+                <td>Register a user</td>
+            </tr>
+            <tr>
+                <td>PATCH</td>
+                <td>/users/update/:id</td>
+                <td>Update User Info</td>
+            </tr>
+            
+            <tr>
+                <td>DELETE</td>
+                <td>/users/delete/:id</td>
+                <td>Remove a user</td>
+            </tr>
         </table>
+        <br>
+        <table border="1">
+            <caption><b>PRODUCTS</b></caption>
+            <tr>
+                <th>HTTP</th>
+                <th>PATH</th>
+                <th>DESCRIPTION</th>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/products</td>
+                <td>Get all products</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>products/:id</td>
+                <td>Get a single product</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/products/addProduct</td>
+                <td>Add/Insert A PRODUCT</td>
+            </tr>
+            <tr>
+                <td>PATCH</td>
+                <td>/products/update/:id</td>
+                <td>Update Product Info</td>
+            </tr> 
+            <tr>
+                <td>DELETE</td>
+                <td>/products/delete/:id</td>
+                <td>Remove Product/Item</td>
+            </tr> 
+        
+        </table>
+        
     </div>
 </body>
 </html>
