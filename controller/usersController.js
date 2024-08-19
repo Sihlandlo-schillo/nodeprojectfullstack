@@ -1,5 +1,5 @@
-import {getUsersDB, getUserDB} from '../model/usersDB.js'
-// import {hash} from 'bcrypt'
+import {getUsersDB, getUserDB, insertUserDB,deleteUserDB} from '../model/usersDB.js'
+import {hash} from 'bcrypt'
 
 
 const fetchUsers = async(req,res)=>{
@@ -8,4 +8,21 @@ const fetchUsers = async(req,res)=>{
 const getUser = async(req,res)=>{
     res.json(await getUserDB(req.params.id))
 }
-export {fetchUsers, getUser}
+
+const insertUser = async(req,res)=>{
+    // console.log(req.headers.cookie.split('=')[1]);
+    
+    let {name,surname,age,language,car,eye,username,password}  = req.body
+    // (password, salt)
+    hash(password,10,async(err,hashedP)=>{
+        if(err) throw err
+        console.log(hashedP);
+        
+        await insertUserDB(name,surname,age,language,car,eye,username, hashedP)
+    })
+    res.send('Data was inserted successfully')
+}
+const deleteUser = async(req,res)=>{
+    res.json(await deleteUserDB(req.params.id))
+}
+export {fetchUsers, getUser,insertUser,deleteUser}

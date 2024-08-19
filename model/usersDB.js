@@ -11,5 +11,15 @@ const getUserDB = async (username)=>{
     return data
 }
 
+const insertUserDB = async(user_name, surname,age,language,car,eye,username,password)=>{
+    let [data] = await pool.query('INSERT INTO users (user_name, user_surname, age, fav_coding_lang,fav_car, eye_color, username, password) VALUES (?,?,?,?,?,?,?,?)',[user_name,surname,age,language,car,eye,username,password])
+    return data
+}
 
-export {getUsersDB, getUserDB}
+const deleteUserDB = async (id)=>{
+    // we don't have to have 'let = [data] ...' as we only deleting, we don't want it to return anything as fetch
+    let [data] = await pool.query('DELETE FROM users WHERE user_id = ?',[id])
+    return data
+}
+
+export {getUsersDB, getUserDB, insertUserDB, deleteUserDB}

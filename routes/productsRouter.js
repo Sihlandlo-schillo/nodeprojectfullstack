@@ -1,5 +1,5 @@
 import express from 'express'
-import {fetchProducts,getProduct} from '../controller/productsController.js'
+import {fetchProducts,getProduct, insertProduct,deleteProduct} from '../controller/productsController.js'
 // import { verifyAToken } from '../middleware/middlewareAuthentication.js'
 // import { addToCartDB } from '../model/fruitDB.js'
 
@@ -9,8 +9,8 @@ const router = express.Router()
 
 router.get('/',fetchProducts)
 router.get('/:id',getProduct)
-// router.post('/insert',insertFruit)
-// router.delete('/:id', deleteFruit)
+router.post('/insert',insertProduct)
+router.delete('/:id', deleteProduct)
 // router.patch('/:id', updateFruit)
 
 
