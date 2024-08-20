@@ -1,18 +1,29 @@
 <template>
-  <section class="hero-section" id="home">
+  <div class="hero-section" id="home">
       <div class="hero-text">
           <h1>Welcome to Your AromaBombs</h1>
           <p>Experience the ultimate relaxation with our handcrafted, all-natural bath bombs. Unwind, rejuvenate, and treat yourself to a spa-like experience at home.</p>
-          <a href="#products" class="btn btn-primary">Get Fizzy</a>
+          <a href="./ProductsView.vue" class="btn btn-primary">Get Fizzy</a>
       </div>
-  </section>
+
+      <!-- <div class="recent">
+        <Card v-for="(product, index) in products" :key="index">
+          <template #cardHeader>
+            <img :src="product.productUrl" :alt="product.productName" >
+          </template>
+          <template #cardBody>
+            
+          </template>
+        </Card>
+      </div> -->
+  </div>
+
+
+
 </template>
 
-<script>
-export default {
-name: 'HomeView',
-components: {}
-}
+<script setup> 
+
 </script>
 
 <style scoped>
@@ -40,4 +51,9 @@ components: {}
   font-size: 1.2rem;
   border-radius: 30px;
 }
+
+/* Carousel */
+
+
+
 </style>

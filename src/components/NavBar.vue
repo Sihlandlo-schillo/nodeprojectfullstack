@@ -14,11 +14,11 @@
       </button>
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link active" href="Home" style="color: black;">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="About" style="color: black;">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="Products" style="color: black;">Products</a></li>
-          <li class="nav-item"><a class="nav-link" href="Admin" style="color: black;">Admin</a></li>
-          <li class="nav-item"><a class="nav-link" href="ContactUs" style="color: black;">Contact Us</a></li>
+          <li class="nav-item"><router-link class="nav-link active" to="/" style="color: black;">Home</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" to="/about" style="color: black;">About</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" to="/products" style="color: black;">Products</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" to="/admin" style="color: black;">Admin</router-link></li>
+          <li class="nav-item"><router-link class="nav-link" to="/ContactUs" style="color: black;">Contact Us</router-link></li>
         </ul>
       </div>
     </div>
