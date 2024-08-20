@@ -1,12 +1,12 @@
 import { createStore } from 'vuex'
-import axios from 'axios'
-import { toast } from 'vue3-toastify'
-import 'vue3-toastify/dist/index.css'
+// import axios from 'axios'
+// import { toast } from 'vue3-toastify'
+// import 'vue3-toastify/dist/index.css'
 // import { applyToken } from '@/service/AuthenticatedUser.js'
-import { useCookies } from 'vue3-cookies'
+// import { useCookies } from 'vue3-cookies'
 
-const {cookies} = useCookies()
-const apiURL = 'https://nodeprojectfullstack.onrender.com/'
+// const {cookies} = useCookies()
+// const apiURL = 'https://nodeprojectfullstack.onrender.com/'
 export default createStore({
   state: {
     users: null,
@@ -34,26 +34,26 @@ export default createStore({
     // },
 
   },
-  actions: {
-    async recentProducts(context) {
-      try {
-        const { results, msg } = await (await axios.get(`${apiURL}product/recent`)).data
-        if (results) {
-          context.commit('setRecentProducts', results)
-        } else {
-          toast.error(`${msg}`, {
-            autoClose: 2000,
-            position: toast.POSITION.BOTTOM_CENTER
-          })
-        }
-      } catch (e) {
-        toast.error(`${e.message}`, {
-          autoClose: 2000,
-          position: toast.POSITION.BOTTOM_CENTER
-        })
-      }
-    }
-  },
+  // actions: {
+  //   async recentProducts(context) {
+  //     try {
+  //       const { results, msg } = await (await axios.get(`${apiURL}product/recent`)).data
+  //       if (results) {
+  //         context.commit('setRecentProducts', results)
+  //       } else {
+  //         toast.error(`${msg}`, {
+  //           autoClose: 2000,
+  //           position: toast.POSITION.BOTTOM_CENTER
+  //         })
+  //       }
+  //     } catch (e) {
+  //       toast.error(`${e.message}`, {
+  //         autoClose: 2000,
+  //         position: toast.POSITION.BOTTOM_CENTER
+  //       })
+  //     }
+  //   }
+  // },
   modules: {
   }
 })
