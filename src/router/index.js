@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
   {
-    path: '/home',
+    path: '/',
     name: 'home',
     component: () => import('../views/HomeView.vue')
   },
@@ -18,8 +18,8 @@ const routes = [
     component: () => import('../views/ProductsView.vue')
   },
   {
-    path: '/Admin',
-    name: 'Admin',
+    path: '/admin',
+    name: 'admin',
     component: () => import('../views/AdminView.vue')
   },
   {
