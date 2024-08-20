@@ -1,5 +1,6 @@
 <template>
   <div class="title">Our Products</div>
+  <div v-if="products?.length">
   <div class="recent">
     <Card v-for="(product, index) in products" :key="index" class="product-card">
       <template #cardHeader>
@@ -15,10 +16,12 @@
       </template>
     </Card>
   </div>
+  </div>
+  <Spinner v-else />
 </template>
 
 <script setup>
-
+import Spinner from '@/components/Spinner.vue'
 import Card from '@/components/Card.vue';
 import {computed, onMounted} from 'vue'
 import { useStore } from 'vuex'
