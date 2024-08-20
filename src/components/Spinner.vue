@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style>
-
+ 
 body {
   background: #2980b9;
 }
@@ -27,13 +27,13 @@ body {
   transform: translate(-50%, -50%);
   width: 240px;
   animation-name: beesandbombs;
-  animation-duration: 4s;
+  animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-timing-function: cubic-bezier(0.82, 0.01, 0.15, 1.01);
 }
 .loading .circle {
   position: relative;
-  background: white;
+  background: rgb(53, 69, 212);
   width: 100px;
   height: 100px;
   border-radius: 100%;
