@@ -5,14 +5,14 @@ const getUsersDB = async()=>{
     return data
 }
 
-const getUserDB = async (username)=>{
+const getUserDB = async (id)=>{
     //add the [] on '[data]'for removing the array square bracket
-    let [[data]] = await pool.query('SELECT * FROM users WHERE firsName = ?',[username])
+    let [[data]] = await pool.query('SELECT * FROM users WHERE user_id = ?',[id])
     return data
 }
 
-const insertUserDB = async(user_name, surname,age,language,car,eye,username,password)=>{
-    let [data] = await pool.query('INSERT INTO users (user_name, user_surname, age, fav_coding_lang,fav_car, eye_color, username, password) VALUES (?,?,?,?,?,?,?,?)',[user_name,surname,age,language,car,eye,username,password])
+const insertUserDB = async(firstName,lastName,userAge,gender,role,email,password,profile)=>{
+    let [data] = await pool.query('INSERT INTO users (firstName, lastName, userAge, gender, userRole, email, password, userProfile) VALUES (?,?,?,?,?,?,?,?)',[firstName,lastName,userAge,gender,role,email,password,profile])
     return data
 }
 
@@ -22,4 +22,14 @@ const deleteUserDB = async (id)=>{
     return data
 }
 
-export {getUsersDB, getUserDB, insertUserDB, deleteUserDB}
+const updateUserDB = async (firstName,lastName,userAge,gender,role,email,password,profile, id)=>{
+    let [data] = await pool.query('UPDATE users SET firstName = ?, lastName = ?, userAge = ?, gender = ?, userRole = ?, email = ?, password = ?, userProfile = ?, WHERE user_id = ?', [firstName,lastName,userAge,gender,role,email,password,profile,id])
+    return data
+}
+
+
+
+
+
+
+export {getUsersDB, getUserDB, insertUserDB, deleteUserDB, updateUserDB}

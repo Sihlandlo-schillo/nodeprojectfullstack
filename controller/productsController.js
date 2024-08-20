@@ -1,4 +1,4 @@
-import {getProductsDB, getProductDB, insertProductDB,deleteProductDB} from '../model/productsDB.js'
+import {getProductsDB, getProductDB, insertProductDB,deleteProductDB, updateProductDB} from '../model/productsDB.js'
 // import { getUserDB } from '../model/usersDB.js'
 
 const fetchProducts = async(req,res)=>{
@@ -18,4 +18,8 @@ const deleteProduct = async(req,res)=>{
     res.json(await deleteProductDB(req.params.id))
 }
 
-export {fetchProducts, getProduct, insertProduct,deleteProduct}
+const updateProduct = async(req,res)=>{
+    res.json(await updateProductDB(req.params.id))
+}
+
+export {fetchProducts, getProduct, insertProduct,deleteProduct,updateProduct}
