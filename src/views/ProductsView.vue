@@ -37,7 +37,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-
 .title {
   display: flex;
   justify-content: center;
@@ -50,30 +49,21 @@ onMounted(() => {
 
 .recent {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem; 
-  justify-content: center;
-}
-
-.button{
-  display: flex;
-  justify-content: center;
-  /* background-color: pink; */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  justify-content: center; /* Center the cards horizontally */
 }
 
 .product-card {
-  max-width: 50rem;
-  min-width: 23rem;
-  height: 100%;
+  width: 90%; /* Adjust this percentage to fit your design */
+  max-width: 25rem; /* Max width for each card */
   border: 1px solid #000;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0 auto; /* Ensure cards are centered within the grid columns */
 }
 
 .product-card:hover {
@@ -83,12 +73,8 @@ onMounted(() => {
 
 .card-image {
   width: 100%;
-  height: 16rem;
+  height: 20rem;
   object-fit: cover;
-  background-color: white;
-}
-
-#cardHeader{
   background-color: white;
 }
 
@@ -119,7 +105,6 @@ onMounted(() => {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-
 }
 
 .card-button:hover {

@@ -106,50 +106,6 @@
     </div>
   </section>
 
-  <!-- <section class="team">
-    <div class="d-flex justify-content-center">
-      <h2 class="title">Meet the Team</h2>
-    </div>
-    <div class="row">
-      <div class="col-md-6 team-member">
-        <img
-          src="https://keirakistensamy.github.io/images/images/IMG_4215.jpg"
-          alt="Team Member 1"
-        />
-        <h3>Keira Kistensamy</h3>
-        <p class="lead">Frontend Developer</p>
-        <p>
-          Keira specializes in crafting intuitive user interfaces. With a
-          background in web design, she ensures that every user interaction with
-          our site is seamless.
-        </p>
-        <p>
-          <a href="https://www.linkedin.com/in/keirakistensamy" target="_blank"
-            >Connect on LinkedIn</a
-          >
-        </p>
-      </div>
-      <div class="col-md-6 team-member">
-        <img
-          src="https://sihlandlo-schillo.github.io/images/images2/Mna.jpg"
-          alt="Team Member 2"
-        />
-        <h3>Sihlandlo Makhumsha</h3>
-        <p class="lead">Backend Developer</p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta
-          facilis autem laboriosam, veritatis, molestias corrupti sequi
-          assumenda quidem natus quis eum delectus excepturi sint aspernatur
-          quod dignissimos explicabo doloremque tempora.
-        </p>
-        <p>
-          <a href="https://www.linkedin.com/in/keirakistensamy" target="_blank"
-            >Connect on LinkedIn</a
-          >
-        </p>
-      </div>
-    </div>
-  </section> -->
 </template>
 
 <script>
@@ -253,33 +209,6 @@ body {
 }
 .content {
   padding: 40px;
-}
-
-.team {
-  padding: 40px;
-  background-color: #fff;
-}
-.team-member {
-  text-align: center;
-  margin-bottom: 30px;
-}
-.team-member img {
-  border-radius: 10%;
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  margin-bottom: 20px;
-}
-.team-member h3 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  font-family: "Grey Qo", cursive;
-  font-weight: 400;
-  font-style: normal;
-}
-.team-member p {
-  font-size: 1rem;
-  color: #777;
 }
 .titles {
   display: grid;
