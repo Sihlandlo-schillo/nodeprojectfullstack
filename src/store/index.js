@@ -80,8 +80,45 @@ export default createStore({
           position: toast.POSITION.BOTTOM_CENTER
         })
       }
-    }
-    
+    },
+    // User(s)
+
+    async fetchUsers(context) {
+      try {
+        const { results, msg } = await (await axios.get(`${apiURL}user`)).data
+        if (results) {
+          context.commit('setUsers', results)
+        } else {
+          toast.error(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
+      }
+    },
+    async fetchUser(context, id) {
+      try {
+        const { result, msg } = await (await axios.get(`${apiURL}user/${id}`)).data
+        if (result) {
+          context.commit('setUser', result)
+        } else {
+          toast.error(`${msg}`, {
+            autoClose: 2000,
+            position: toast.POSITION.BOTTOM_CENTER
+          })
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000,
+          position: toast.POSITION.BOTTOM_CENTER
+        })
+      }
+    },
   },
   modules: {
   }

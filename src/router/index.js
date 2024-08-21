@@ -23,6 +23,11 @@ const routes = [
     component: () => import('../views/AdminView.vue')
   },
   {
+    path: '/SingleView',
+    name: 'SingleView',
+    component: () => import('../views/SingleView.vue')
+  },
+  {
     path: '/ContactUs',
     name: 'ContactUs',
     component: () => import('../views/ContactUsView.vue')

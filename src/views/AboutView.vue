@@ -112,7 +112,7 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 body {
   font-family: "Raleway", sans-serif;
   background-color: #f4f4f4;
@@ -226,4 +226,5 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
+
 </style>
