@@ -19,4 +19,8 @@ export default {
 .card {
     width: 18rem;
 }
+
+.card-header{
+    background-color: #fff;
+}
 </style>
