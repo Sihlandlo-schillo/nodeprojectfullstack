@@ -9,7 +9,7 @@ const router = express.Router()
 
 router.get('/',fetchProducts)
 router.get('/:id',getProduct)
-router.post('/insert',insertProduct)
+router.post('/addProduct',insertProduct)
 router.delete('/delete/:id', deleteProduct)
 router.patch('/update/:id', updateProduct)
 

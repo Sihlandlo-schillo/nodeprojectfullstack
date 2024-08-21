@@ -11,8 +11,8 @@ const getProductDB = async (id)=>{
 }
 
 const insertProductDB= async(productName,quantity,amount,category,productUrl)=>{
-    let [data] = await pool.query('INSERT INTO products (productName,quantity,amount,category,productUrl) VALUES (?,?,?,?,?)',[productName,quantity,amount,category,productUrl])
-    return data
+    await pool.query('INSERT INTO products (productName,quantity,amount,category,productUrl) VALUES (?,?,?,?,?)',[productName,quantity,amount,category,productUrl])
+    // return data
 }
 
 const deleteProductDB= async (id)=>{

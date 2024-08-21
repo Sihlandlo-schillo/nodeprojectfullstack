@@ -5,9 +5,9 @@ const getUsersDB = async()=>{
     return data
 }
 
-const getUserDB = async (id)=>{
+const getUserDB = async (email)=>{
     //add the [] on '[data]'for removing the array square bracket
-    let [[data]] = await pool.query('SELECT * FROM users WHERE user_id = ?',[id])
+    let [[data]] = await pool.query('SELECT * FROM users WHERE email = ?',[email])
     return data
 }
 
@@ -23,7 +23,7 @@ const deleteUserDB = async (id)=>{
 }
 
 const updateUserDB = async (firstName,lastName,userAge,gender,role,email,password,profile, id)=>{
-    let [data] = await pool.query('UPDATE users SET firstName = ?, lastName = ?, userAge = ?, gender = ?, userRole = ?, email = ?, password = ?, userProfile = ?, WHERE user_id = ?', [firstName,lastName,userAge,gender,role,email,password,profile,id])
+    let [data] = await pool.query('UPDATE users SET firstName = ?, lastName = ?, userAge = ?, gender = ?, userRole = ?, email = ?, password = ?, userProfile = ? WHERE user_id = ?', [firstName,lastName,userAge,gender,role,email,password,profile,id])
     return data
 }
 
