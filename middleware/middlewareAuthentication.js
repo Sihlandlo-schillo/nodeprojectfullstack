@@ -1,7 +1,7 @@
 // Authenticate A USER
 
 import { compare } from "bcrypt"
-import { getUserDB } from "../model/usersDB.js"
+import { loginUserDB } from "../model/usersDB.js"
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 
@@ -12,7 +12,7 @@ dotenv.config()
 
 const checkUser = async(req,res,next)=>{
     const {email,password} = req.body
-    let hashedPassword = (await getUserDB(email)).password
+    let hashedPassword = (await loginUserDB(email)).password
     console.log(hashedPassword);
 
     // let result = compare(password, hashedPassword)
