@@ -1,25 +1,15 @@
 <template>
   <div class="hero-section" id="home">
       <div class="hero-text">
-          <h1>Welcome to Your AromaBombs</h1>
+          <h1 class="titles">Welcome to AromaBombs!</h1>
           <p>Experience the ultimate relaxation with our handcrafted, all-natural bath bombs. Unwind, rejuvenate, and treat yourself to a spa-like experience at home.</p>
           <a href="./ProductsView.vue" class="btn btn-primary">Get Fizzy</a>
       </div>
-
-      <!-- <div class="recent">
-        <Card v-for="(product, index) in products" :key="index">
-          <template #cardHeader>
-            <img :src="product.productUrl" :alt="product.productName" >
-          </template>
-          <template #cardBody>
-            
-          </template>
-        </Card>
-      </div> -->
   </div>
-
-
-
+  <div>
+    <h2 class="title d-flex mb-5">Our best selling products</h2>
+    <p class="text d-flex justify-content-center">(put 3 products here)</p>
+  </div>
 </template>
 
 <script setup> 
@@ -27,6 +17,19 @@
 </script>
 
 <style scoped>
+
+.title {
+  font-family: "Island Moments", cursive;
+  font-weight: 1000;
+  font-style: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem; 
+
+
+}
+
 .hero-section {
   height: 100vh;
   background-image: url('https://keirakistensamy.github.io/nodeimages/images/idk.jpg');
@@ -38,7 +41,7 @@
   text-align: center;
 }
 .hero-text h1 {
-  font-size: 2rem;
+  font-size: 4rem;
   font-weight: 700;
 }
 .hero-text p {
@@ -51,8 +54,6 @@
   font-size: 1.2rem;
   border-radius: 30px;
 }
-
-/* Carousel */
 
 
 
