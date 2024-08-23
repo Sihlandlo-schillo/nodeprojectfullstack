@@ -22,7 +22,7 @@ const deleteProductDB= async (id)=>{
 }
 
 const updateProductDB = async (productName,quantity,amount,category,productUrl,productDescription, id)=>{
-    let [data] = await pool.query('UPDATE products SET productName = ?, quantity = ?, amount = ?, category = ?, productUrl = ?, productDescription = ? WHERE product_id = ?', [productName,quantity,amount,category,productUrl,productDescription,id])
+    let [{data}] = await pool.query('UPDATE products SET productName = ?, quantity = ?, amount = ?, category = ?, productUrl = ?, productDescription = ? WHERE product_id = ?', [productName,quantity,amount,category,productUrl,productDescription,id])
     return data
 }
 
