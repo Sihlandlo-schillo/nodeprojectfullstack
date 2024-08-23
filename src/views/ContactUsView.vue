@@ -86,7 +86,7 @@
         </div>
         <div class="contact-info">
           <h2 class="heading">... or feel free to contact us</h2>
-          <p class="calls">Phone: 021 784 2964</p>
+          <p class="calls">Phone: 063 941 4716</p>
           <p class="calls">Email: AromaBombs@gmail.com</p>
           <p class="calls">Address: 135 Main Rd, Claremont, Cape Town, 7708</p>
   
@@ -127,7 +127,10 @@
               with our site is seamless.
             </p>
             <p>
-              <a href="https://www.linkedin.com/in/keirakistensamy" target="_blank">Connect on LinkedIn</a>
+              <a href="https://www.linkedin.com/in/keira-kistensamy-4722732a8/" target="_blank">Connect on LinkedIn</a>
+            </p>
+            <p>
+              <a href="https://github.com/KeiraKistensamy" target="_blank">Connect on GitHub</a>
             </p>
           </div>
 
@@ -145,6 +148,9 @@
             </p>
             <p>
               <a href="https://www.linkedin.com/in/siho" target="_blank">Connect on LinkedIn</a>
+            </p>
+            <p>
+              <a href="https://github.com/Sihlandlo-schillo" target="_blank">Connect on GitHub</a>
             </p>
           </div>
         </div>
@@ -166,11 +172,17 @@
   font-size: 4rem;
 }
   
-/* Contact Page Styling */
 .contact-page {
   font-family: "Arial", sans-serif;
   color: #333;
   padding: 2rem;
+  /* background-image: url("https://keirakistensamy.github.io/nodeimages/images/bubbles.jpg"); */
+  background-color: #a5c0dc;
+  background-size: contain;
+  background-position: center;
+  text-align: center;
+  position: relative;
+
 }
 
 .contact-header {
@@ -180,14 +192,13 @@
 
 .contact-header h1 {
   font-size: 4rem;
-  margin-bottom: 0.5rem;
 }
 
 .contact-content {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 }
 
 .calls {
@@ -196,7 +207,6 @@
     justify-content: center;
 }
 
-/* Form Styling */
 .contact-form,
 .contact-info {
   width: 48%;
@@ -241,7 +251,7 @@
 }
 
 .btn {
-  background-color: #007bff;
+  background-color: #06305e;
   color: #fff;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -251,7 +261,6 @@
   transition: background-color 0.3s ease;
 }
 
-/* Social Media Icons */
 .social-media {
   display: flex;
   justify-content: center;
@@ -265,13 +274,11 @@
   display: block;
 }
 
-/* Map Styling */
 .contact-map {
   margin-top: 2rem;
   border-radius: 8px;
 }
 
-/* Team Section Styling */
 .team {
   margin-top: 4rem;
 }
@@ -331,21 +338,25 @@
   /* Responsive Styling */
   @media (max-width: 768px) {
     .contact-header h1 {
-      font-size: 2rem;
+      font-size: 3rem;
     }
   
     .contact-form,
     .contact-info {
       flex: 1 1 100%;
+      margin-top: 30px;
     }
   
     .team-member {
       flex: 1 1 100%;
+      margin-top: 30px;
+
     }
     
     .team-img {
       width: 100px; 
       height: 100px; 
+      /* margin-bottom: 20px; */
     }
   }
 

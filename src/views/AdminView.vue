@@ -1,155 +1,579 @@
 <template>
-    <div class="admin-page">
-      <h1>Product Management</h1>
-      <div class="product-management">
-        <h2>Manage Products</h2>
-        <button @click="showAddProductForm = !showAddProductForm">
-          {{ showAddProductForm ? 'Cancel' : 'Add New Product' }}
-        </button>
   
-        <form v-if="showAddProductForm" @submit.prevent="addProduct">
-          <input v-model="newProduct.name" placeholder="Product Name" required />
-          <input v-model="newProduct.price" type="number" placeholder="Price" required />
-          <textarea v-model="newProduct.description" placeholder="Description"></textarea>
-          <input v-model="newProduct.imageUrl" placeholder="Image URL" />
-          <button type="submit">Add Product</button>
-        </form>
-  
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Description</th>
-              <th>Image</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="product in products" :key="product.id">
-              <td>
-                <input v-model="product.name" @blur="updateProduct(product)" />
-              </td>
-              <td>
-                <input v-model="product.price" type="number" @blur="updateProduct(product)" />
-              </td>
-              <td>
-                <textarea v-model="product.description" @blur="updateProduct(product)"></textarea>
-              </td>
-              <td>
-                <input v-model="product.imageUrl" @blur="updateProduct(product)" />
-              </td>
-              <td>
-                <button @click="deleteProduct(product.id)">Delete</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+  <div class="admin">
+    <div class="title">Our Dashboard</div>
+
+    <!-- Dropdown for Users and Products -->
+    <div class="dropdown-container">
+      <label for="viewSelector">View: </label>
+      <select v-model="selectedView" id="viewSelector" class="dropdown-select">
+        <option value="products">Products</option>
+        <option value="users">Users</option>
+      </select>
+    </div>
+
+    
+    <!-- Products Table -->
+    <div v-if="selectedView === 'products' && products?.length">
+      <!-- Button trigger modal for add Product-->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">Add product</button>
+  <!-- Modal -->
+  <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="newproductName" class="form-label">Product Name</label>
+              <input type="text" class="form-control" id="newproductName" v-model="payload.productName">
+            </div>
+            <div class="mb-3">
+              <label for="newproductDescription" class="form-label">Product Description</label>
+              <textarea class="form-control" id="newproductDescription" v-model="payload.productDescription"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="newuserRole" class="form-label">Quantity</label>
+              <input type="number" class="form-control" id="newproductQuantity" v-model="payload.quantity">
+            </div>
+            <div class="mb-3">
+              <label for="newemail" class="form-label">Email</label>
+              <input type="text" class="form-control" id="newemail" v-model="payload.email">
+            </div>
+            <div class="mb-3">
+              <label for="newpassword" class="form-label">Password</label>
+              <input type="number" class="form-control" id="newpassword" v-model="payload.password">
+            </div>
+            <div class="mb-3">
+              <label for="newuserProfile" class="form-label">User ImgURL</label>
+              <input type="url" class="form-control" id="newuserProfile" v-model="payload.userProfile">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" @click.prevent="addProduct">Save changes</button>
+        </div>
       </div>
     </div>
-  </template>
+  </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="head">Image</th>
+            <th scope="col" class="head">Product ID</th>
+            <th scope="col" class="head">Product Name</th>
+            <th scope="col" class="head">Description</th>
+            <th scope="col" class="head">Quantity</th>
+            <th scope="col" class="head">Price</th>
+            <th scope="col" class="head">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(product, index) in products" :key="index">
+            <td><img :src="product.productUrl" :alt="product.productName" class="item-image"></td>
+            <td>{{ product.product_id }}</td>
+            <td>{{ product.productName }}</td>
+            <td>Scent: {{ product.productDescription }}</td>
+            <td>{{ product.quantity }} left</td>
+            <td>R{{ product.amount }}</td>
+            <td class="hello">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#modal-product-' + index">
+                Edit
+              </button>
+              <button class="btn btn-danger" @click="deleteProd(product.product_id)" >Deleted</button>
+
+              <!-- Modal for Edit Product-->
+              <div class="modal fade" :id="'modal-product-' + index" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="title" id="productModalLabel">Edit Product</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="mb-3">
+                          <label for="productName" class="form-label">Product Name</label>
+                          <input type="text" class="form-control" id="productName" v-model="product.productName">
+                        </div>
+                        <div class="mb-3">
+                          <label for="productDescription" class="form-label">Product Description</label>
+                          <textarea class="form-control" id="productDescription" v-model="product.productDescription"></textarea>
+                        </div>
+                        <div class="mb-3">
+                          <label for="productQuantity" class="form-label">Quantity</label>
+                          <input type="number" class="form-control" id="productQuantity" v-model="product.quantity">
+                        </div>
+                        <div class="mb-3">
+                          <label for="productAmount" class="form-label">Price</label>
+                          <input type="number" class="form-control" id="productAmount" v-model="product.amount">
+                        </div>
+                        <div class="mb-3">
+                          <label for="productImageUrl" class="form-label">Image URL</label>
+                          <input type="url" class="form-control" id="productImageUrl" v-model="product.productUrl">
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End of Modal -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+
+    <!-- Users Table -->
+    <div v-else-if="selectedView === 'users' && users?.length">
+            <!-- Button trigger modal for add Product-->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">Add User</button>
+  <!-- Modal -->
+  <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="newfirstname" class="form-label">Firstname:</label>
+              <textarea class="form-control" id="newfirstname" v-model="payload.firstname"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="newlastName" class="form-label">Lastname:</label>
+              <textarea class="form-control" id="newlastName" v-model="payload.lastName"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="newuserAge" class="form-label">User's Age:</label>
+              <textarea class="form-control" id="newuserAge" v-model="payload.userAge"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="newgender" class="form-label">Gender</label>
+              <textarea class="form-control" id="newgender" v-model="payload.gender"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="newuserRole" class="form-label">User's Role</label>
+              <input type="text" class="form-control" id="newuserRole" v-model="payload.userRole">
+            </div>
+            <div class="mb-3">
+              <label for="newemail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="newemail" v-model="payload.email">
+            </div>
+            <div class="mb-3">
+              <label for="newpassword" class="form-label">Password</label>
+              <input type="text" class="form-control" id="newpassword" v-model="payload.password">
+            </div>
+            <div class="mb-3">
+              <label for="newproductImageUrl" class="form-label">Image URL</label>
+              <input type="url" class="form-control" id="newproductImageUrl" v-model="payload.userProfile">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" @click.prevent="addUser">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="head">Profile</th>
+            <th scope="col" class="head">User ID</th>
+            <th scope="col" class="head">First Name</th>
+            <th scope="col" class="head">Last Name</th>
+            <th scope="col" class="head">Age</th>
+            <th scope="col" class="head">Gender</th>
+            <th scope="col" class="head">Role</th>
+            <th scope="col" class="head">Email</th>
+            <th scope="col" class="password head">Password</th>
+            <th scope="col" class="head">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(user, index) in users" :key="index">
+            <td><img :src="user.userProfile" :alt="user.firstName" class="item-image"></td>
+            <td>{{ user.user_id }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.userAge }}</td>
+            <td>{{ user.gender }}</td>
+            <td>{{ user.userRole }}</td>
+            <td>{{ user.email }}</td>
+            <td class="password">{{ user.password }}</td>
+            <td>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#modal-user-' + index">
+                Edit
+              </button>
+              <button class="btn btn-danger">Delete</button>
+
+              <!-- Modal for edit product-->
+              <div class="modal fade" :id="'modal-user-' + index" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="title" id="userModalLabel">Edit User</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="mb-3">
+                          <label for="firstName" class="form-label">First Name</label>
+                          <input type="text" class="form-control" id="firstName" v-model="user.firstName">
+                        </div>
+                        <div class="mb-3">
+                          <label for="lastName" class="form-label">Last Name</label>
+                          <input type="text" class="form-control" id="lastName" v-model="user.lastName">
+                        </div>
+                        <div class="mb-3">
+                          <label for="userAge" class="form-label">Age</label>
+                          <input type="number" class="form-control" id="userAge" v-model="user.userAge">
+                        </div>
+                        <div class="mb-3">
+                          <label for="gender" class="form-label">Gender</label>
+                          <select class="form-select" id="gender" v-model="user.gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                          </select>
+                        </div>
+                        <div class="mb-3">
+                          <label for="userRole" class="form-label">User's role</label>
+                          <input type="text" class="form-control" id="userRole" v-model="user.userRole">
+                        </div>
+                        <div class="mb-3">
+                          <label for="email" class="form-label">Email</label>
+                          <input type="email" class="form-control" id="email" v-model="user.email">
+                        </div>
+                        <div class="mb-3">
+                          <label for="password" class="form-label">Password</label>
+                          <input type="password" class="form-control" id="password" v-model="user.password">
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End of Modal -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <Spinner v-if="!products?.length && !users?.length" />
+  </div>
+</template>
+
+<script setup>
+
+import Spinner from '@/components/Spinner.vue'
+import { ref, computed, onMounted } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+
+const store = useStore()
+const router = useRouter()
+const selectedView = ref('products')
+
+console.log(router);
+
+const payload = ref({
+  productName: "",
+  quantity: "",
+  amount: "",
+  category: "",
+  productUrl: "",
+  productDescription: "",
+})
+const userPayload = ref({
+  firstName: "",
+  lastName: "",
+  userAge: "",
+  gender: "",
+  userRole: "",
+  email: "",
+  password: "",
+  userProfile: "",
+})
+// Fetching products and users from store
+const products = computed(() => store.state.products)
+const users = computed(() => store.state.users)
+
+onMounted(() => {
+  store.dispatch('fetchProducts')
+  store.dispatch('fetchUsers')
+});
+
+function addProduct(){
+  console.log(payload.value);
   
-  <script>
-  export default {
-    data() {
-      return {
-        products: [],
-        newProduct: {
-          name: '',
-          price: '',
-          description: '',
-          imageUrl: ''
-        },
-        showAddProductForm: false
-      }
-    },
-    methods: {
-      fetchProducts() {
-        fetch('/api/products')
-          .then(response => response.json())
-          .then(data => {
-            this.products = data;
-          })
-          .catch(error => console.error('Error fetching products:', error));
-      },
-      addProduct() {
-        fetch('/api/products', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(this.newProduct)
-        })
-        .then(response => response.json())
-        .then(data => {
-          this.products.push(data);
-          this.newProduct.name = '';
-          this.newProduct.price = '';
-          this.newProduct.description = '';
-          this.newProduct.imageUrl = '';
-          this.showAddProductForm = false;
-        })
-        .catch(error => console.error('Error adding product:', error));
-      },
-      updateProduct(product) {
-        fetch(`/api/products/${product.id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(product)
-        })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Product updated:', data);
-        })
-        .catch(error => console.error('Error updating product:', error));
-      },
-      deleteProduct(id) {
-        fetch(`/api/products/${id}`, {
-          method: 'DELETE'
-        })
-        .then(() => {
-          this.products = this.products.filter(product => product.id !== id);
-        })
-        .catch(error => console.error('Error deleting product:', error));
-      }
-    },
-    mounted() {
-      this.fetchProducts();
-    }
+    store.dispatch('addProduct', payload.value)
   }
-  </script>
+function addUser(){
+  console.log(userPayload.value);
   
-  <style scoped>
-  .admin-page {
-    padding: 20px;
+    store.dispatch('addUser', userPayload.value)
   }
-  
-  .product-management {
-    margin-top: 20px;
+
+  function deleteProd(id) {
+    console.log('clicked');
+    
+    store.dispatch('delete', id)
   }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+
+</script>
+
+<style scoped>
+.admin{
+  font-family: "Arial", sans-serif;
+  color: #333;
+  padding: 2rem;
+  position: relative;
+
+}
+
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Island Moments", cursive;
+  font-weight: 1000;
+  font-size: 50px;
+  margin: 20px 0;
+}
+
+.dropdown-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.password {
+  max-width: 9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dropdown-select {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  text-align: left;
+  vertical-align: middle;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.table img.item-image {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.head {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.btn {
+  font-size: 0.9rem;
+  padding: 5px 10px;
+}
+
+.modal-body {
+  padding: 20px;
+  background-color: #ebcbcb;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+/* Input focus effect */
+.form-control:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 768px) {
+
+  .title {
+    font-size: 40px;
   }
-  
-  table th, table td {
-    padding: 10px;
-    border: 1px solid #ddd;
+
+  .dropdown-select {
+    font-size: 0.9rem;
+    padding: 8px;
   }
-  
-  input, textarea {
+
+  .table th, .table td {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .table img.item-image {
+    width: 80px;
+  }
+
+  .btn {
     padding: 5px;
-    margin: 5px 0;
+    font-size: 0.8rem;
+  }
+
+  .modal-body {
+    padding: 10px;
+  }
+
+  .form-group label,
+  .form-control {
+    font-size: 0.9rem;
+  }
+
+  .display-2 {
+    font-size: 1.5rem;
+  }
+  table th, table td {
+    font-size: 0.875rem;
+    padding: 0.5rem;
+  }
+  .purchaseButton {
     width: 100%;
+    margin-top: 1rem;
   }
-  
-  button {
-    padding: 5px 10px;
-    margin-top: 10px;
+}
+
+@media (max-width: 576px) {
+  .navbar-brand img {
+    width: 120px;
   }
-  </style>
-  
+  .table th, .table td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .table th {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+  }
+  .table td {
+    border: none;
+    position: relative;
+    padding-left: 0;
+    text-align: center;
+  }
+  .table td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 1rem;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  #btn-success{
+    width: 200px;
+    margin-left: -70px;
+  }
+  #input{
+    width: 200px;
+    margin-left: -37px;
+  }
+  .display-2 {
+    font-size: 1rem;
+  }
+  table th, table td {
+    font-size: 0.5rem;
+    padding: 0.25rem;
+  }
+  .purchaseButton {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  h2 {
+    font-size: 4rem;
+  }
+  .icon i {
+    font-size: 20px;
+  }
+  .about-para {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .ptag {
+    font-size: 20px;
+    width: 200px;
+    padding: 0px 0px;
+  }
+
+  .product-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .iconss{
+    font-size: 10px;
+  }
+  .text-center {
+    font-size: 15px;
+    width: 200px;
+  }
+  #text-center{
+    width: 225px !important;
+    margin-left: 40px;
+  }
+}
+</style>
