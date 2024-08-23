@@ -103,7 +103,7 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 body {
   font-family: "Raleway", sans-serif;
   background-color: #f4f4f4;
@@ -267,6 +267,5 @@ body {
 .bold {
   font-weight: bold;
 }
-
 
 </style>

@@ -26,6 +26,15 @@
 
 </body>
 
+          <h1 class="titles">Welcome to AromaBombs!</h1>
+          <p>Experience the ultimate relaxation with our handcrafted, all-natural bath bombs. Unwind, rejuvenate, and treat yourself to a spa-like experience at home.</p>
+          <a href="./ProductsView.vue" class="btn btn-primary">Get Fizzy</a>
+      </div>
+  </div>
+  <div>
+    <h2 class="title d-flex mb-5">Our best selling products</h2>
+    <p class="text d-flex justify-content-center">(put 3 products here)</p>
+  </div>
 </template>
 
 <script setup> 
@@ -135,7 +144,6 @@ body {
   }
 }
 
-
 .title {
   font-family: "Island Moments", cursive;
   font-weight: 1000;
@@ -175,7 +183,9 @@ body {
   font-size: 2.5rem;
   animation: typing 4.5s steps(80, end) 0.5s forwards, blink-caret 0.75s step-end infinite;
 }
+font-size: 4rem; 
 
+}
 
 .hero-section {
   height: 100vh;
@@ -204,6 +214,7 @@ body {
 
 .hero-text h1 {
   font-size: 3rem;
+  font-size: 4rem;
   font-weight: 700;
   animation: rotateText 10s infinite linear;
 }
@@ -313,7 +324,4 @@ body {
 .banner .card:hover{
   transform: translate(10px);
 }
-
-
-
 </style>

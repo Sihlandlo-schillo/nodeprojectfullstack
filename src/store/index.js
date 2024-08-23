@@ -63,6 +63,7 @@ export default createStore({
         })
       }
     },
+
   async updateProduct(context, payload) {
     try {
       const response = await axios.patch(`${apiURL}product/${payload.product_ID}`, payload);
@@ -144,6 +145,13 @@ export default createStore({
 
         const msg = 'Users not recieved'
 
+
+    // User(s)
+
+    async fetchUsers(context) {
+      try {
+        const { results, msg } = await (await axios.get(`${apiURL}user`)).data
+
         if (results) {
           context.commit('setUsers', results)
         } else {
@@ -177,6 +185,7 @@ export default createStore({
         })
       }
     },
+
     async delete(context, id) {
       console.log('hey');
       
@@ -221,7 +230,6 @@ export default createStore({
         })
       }
     },
-
   },
   modules: {
   }
