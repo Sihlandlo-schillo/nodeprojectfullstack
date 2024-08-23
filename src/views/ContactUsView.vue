@@ -21,6 +21,25 @@
               required
             />
           </div>
+        </div>
+        <div class="contact-info">
+          <h2 class="heading">... or feel free to contact us</h2>
+          <p class="calls">Phone: 063 941 4716</p>
+          <p class="calls">Email: AromaBombs@gmail.com</p>
+          <p class="calls">Address: 135 Main Rd, Claremont, Cape Town, 7708</p>
+  
+          <div class="contact-map">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093745!2d18.4628609!3d-33.9804774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc42d1bd2aa6f7%3A0xfc3fb30472567911!2s135+Main+Rd%2C+Claremont%2C+Cape+Town%2C+7708!5e0!3m2!1sen!2sza!4v1697696624832!5m2!1sen!2sza"
+    width="100%"
+    height="350"
+    frameborder="0"
+    style="border:0;"
+    allowfullscreen=""
+    aria-hidden="false"
+    tabindex="0"
+  ></iframe>
+</div>
           <div class="form-group">
             <input
               type="text"
@@ -114,6 +133,25 @@
         <h2 class="title">Meet the Team</h2>
       </div>
 
+          <div class="col-md-6 team-member">
+            <img
+              src="https://keirakistensamy.github.io/images/images/IMG_4215.jpg"
+              alt="Keira Kistensamy"
+              class="team-img"
+            />
+            <h3>Keira Kistensamy</h3>
+            <p class="lead">Frontend Developer</p>
+            <p>
+              Keira specializes in crafting intuitive user interfaces. With a
+              background in web design, she ensures that every user interaction
+              with our site is seamless.
+            </p>
+            <p>
+              <a href="https://www.linkedin.com/in/keira-kistensamy-4722732a8/" target="_blank">Connect on LinkedIn</a>
+            </p>
+            <p>
+              <a href="https://github.com/KeiraKistensamy" target="_blank">Connect on GitHub</a>
+            </p>
       <div class="row team-content">
         <div class="col-md-6 team-member">
           <img
@@ -154,6 +192,24 @@
           </div>
         </div>
 
+          <div class="col-md-6 team-member">
+            <img
+              src="https://sihlandlo-schillo.github.io/images/images2/Mna.jpg"
+              alt="Sihlandlo Makhumsha"
+              class="team-img"
+            />
+            <h3>Sihlandlo Makhumsha</h3>
+            <p class="lead">Backend Developer</p>
+            <p>
+              Sihlandlo is an expert in server-side development. He ensures that
+              the backbone of our applications runs smoothly and efficiently.
+            </p>
+            <p>
+              <a href="https://www.linkedin.com/in/siho" target="_blank">Connect on LinkedIn</a>
+            </p>
+            <p>
+              <a href="https://github.com/Sihlandlo-schillo" target="_blank">Connect on GitHub</a>
+            </p>
         <div class="col-md-6 team-member">
           <img
             src="https://sihlandlo-schillo.github.io/images/images2/Mna.jpg"
@@ -199,7 +255,6 @@
 <script setup></script>
 
 <style scoped>
-/* General Styling */
 .title {
   font-family: "Island Moments", cursive;
   font-weight: 1000;
@@ -210,11 +265,17 @@
   font-size: 4rem;
 }
 
-/* Contact Page Styling */
 .contact-page {
   font-family: "Arial", sans-serif;
   color: #333;
   padding: 2rem;
+  /* background-image: url("https://keirakistensamy.github.io/nodeimages/images/bubbles.jpg"); */
+  background-color: #a5c0dc;
+  background-size: contain;
+  background-position: center;
+  text-align: center;
+  position: relative;
+
 }
 
 .contact-header {
@@ -224,14 +285,13 @@
 
 .contact-header h1 {
   font-size: 4rem;
-  margin-bottom: 0.5rem;
 }
 
 .contact-content {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 }
 
 .calls {
@@ -240,7 +300,6 @@
   justify-content: center;
 }
 
-/* Form Styling */
 .contact-form,
 .contact-info {
   width: 48%;
@@ -285,7 +344,7 @@
 }
 
 .btn {
-  background-color: #007bff;
+  background-color: #06305e;
   color: #fff;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -295,7 +354,6 @@
   transition: background-color 0.3s ease;
 }
 
-/* Social Media Icons */
 .social-media {
   display: flex;
   justify-content: center;
@@ -309,13 +367,11 @@
   display: block;
 }
 
-/* Map Styling */
 .contact-map {
   margin-top: 2rem;
   border-radius: 8px;
 }
 
-/* Team Section Styling */
 .team {
   margin-top: 4rem;
 }
@@ -371,6 +427,29 @@
   text-decoration: underline;
 }
 
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .contact-header h1 {
+      font-size: 3rem;
+    }
+  
+    .contact-form,
+    .contact-info {
+      flex: 1 1 100%;
+      margin-top: 30px;
+    }
+  
+    .team-member {
+      flex: 1 1 100%;
+      margin-top: 30px;
+
+    }
+    
+    .team-img {
+      width: 100px; 
+      height: 100px; 
+      /* margin-bottom: 20px; */
+    }
 /* Responsive Styling */
 @media (max-width: 768px) {
   .contact-header h1 {

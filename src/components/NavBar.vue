@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Island+Moments&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <!-- my carousel on AboutView comes from https://codepen.io/freeplayg/pen/dyEeevX -->
+
     <div class="container-fluid">
         <a class="navbar-brand" href="#" style="color: #F8F9FA;">Aroma Bombs</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
