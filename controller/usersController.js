@@ -13,20 +13,19 @@ const insertUser = async(req,res)=>{
     
     
     let {firstName,lastName,userAge,gender,role,email,password,profile}  = req.body
-    let emailDB = await loginUserDB(email)
-   if (email==emailDB) {
-    res.send('Email already exists')
-    return
-   }else{
-       hash(password,10,async(err,hashedP)=>{
-           if(err) throw err
-           console.log(hashedP);
-           
-           await insertUserDB(firstName,lastName,userAge,gender,role,email,hashedP,profile)
-       })
-       res.send('Data was inserted successfully')
+//     let emailDB = await loginUserDB(email)
+//    if (email==emailDB) {
+//     res.send('Email already exists')
+//     return
+    hash(password,10,async(err,hashedP)=>{
+        if(err) throw err
+        console.log(hashedP);
+        
+        await insertUserDB(firstName,lastName,userAge,gender,role,email,hashedP,profile)
+    })
+    res.send('Data was inserted successfully')
    }
-}
+
 const deleteUser = async(req,res)=>{
     res.json(await deleteUserDB(req.params.id))
 }
