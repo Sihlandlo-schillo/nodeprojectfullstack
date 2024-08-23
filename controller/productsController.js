@@ -21,6 +21,7 @@ const insertProduct = async(req,res)=>{
 const deleteProduct = async(req,res)=>{
     try{
         await deleteProductDB(req.params.id)
+        res.send('Data was deleted successfully')
     }
     catch(err){
         console.log(err);
