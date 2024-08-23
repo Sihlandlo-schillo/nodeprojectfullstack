@@ -45,7 +45,7 @@ const updateProduct = async(req,res)=>{
     
     
         await updateProductDB(productName,quantity,amount,category,productUrl,productDescription,req.params.id)
-        res.send('Data was updated successfully')
+        res.status(200).send('Data was updated successfully')
 
     } catch(err){
         console.log(err);

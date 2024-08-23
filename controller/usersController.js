@@ -1,4 +1,4 @@
-import {getUsersDB, getUserDB, insertUserDB,deleteUserDB, updateUserDB} from '../model/usersDB.js'
+import {getUsersDB, getUserDB, insertUserDB,deleteUserDB, updateUserDB, loginUserDB} from '../model/usersDB.js'
 import {hash} from 'bcrypt'
 
 
@@ -10,18 +10,22 @@ const getUser = async(req,res)=>{
 }
 
 const insertUser = async(req,res)=>{
-    // console.log(req.headers.cookie.split('=')[1]);
+    
     
     let {firstName,lastName,userAge,gender,role,email,password,profile}  = req.body
-    // await insertUserDB(firstName,lastName,userAge,gender,role,email,password,profile)
-    // (password, salt)
-    hash(password,10,async(err,hashedP)=>{
-        if(err) throw err
-        console.log(hashedP);
-        
-        await insertUserDB(firstName,lastName,userAge,gender,role,email,hashedP,profile)
-    })
-    res.send('Data was inserted successfully')
+    let emailDB = await loginUserDB(email)
+   if (email==emailDB) {
+    res.send('Email already exists')
+    return
+   }else{
+       hash(password,10,async(err,hashedP)=>{
+           if(err) throw err
+           console.log(hashedP);
+           
+           await insertUserDB(firstName,lastName,userAge,gender,role,email,hashedP,profile)
+       })
+       res.send('Data was inserted successfully')
+   }
 }
 const deleteUser = async(req,res)=>{
     res.json(await deleteUserDB(req.params.id))

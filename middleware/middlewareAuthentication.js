@@ -13,6 +13,7 @@ dotenv.config()
 const checkUser = async(req,res,next)=>{
     const {email,password} = req.body
     let hashedPassword = (await loginUserDB(email)).password
+    //  (await loginUserDB(password)).email
     console.log(hashedPassword);
 
     // let result = compare(password, hashedPassword)
