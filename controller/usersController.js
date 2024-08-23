@@ -1,6 +1,6 @@
 import {getUsersDB, getUserDB, insertUserDB,deleteUserDB, updateUserDB, loginUserDB} from '../model/usersDB.js'
-import {hash} from 'bcrypt'
-
+import pkg from 'bcryptjs';
+const {hash} = pkg;
 
 const fetchUsers = async(req,res)=>{
     res.json(await getUsersDB())

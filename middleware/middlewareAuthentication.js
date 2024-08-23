@@ -1,6 +1,7 @@
 // Authenticate A USER
 
-import { compare } from "bcrypt"
+import pkg from 'bcryptjs';
+const { compare } = pkg;
 import { loginUserDB } from "../model/usersDB.js"
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
