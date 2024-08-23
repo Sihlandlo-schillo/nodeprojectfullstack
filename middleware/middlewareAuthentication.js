@@ -32,7 +32,7 @@ const checkUser = async(req,res,next)=>{
             next()
             return
         }
-        res.send('Wrong Password my G')
+        res.status(400).send('Wrong Password')
     })
 }
 
