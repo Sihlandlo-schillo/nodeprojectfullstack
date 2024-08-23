@@ -1,8 +1,12 @@
 import express from 'express'
 import cors from 'cors'
+import dotenv from 'dotenv'
+
 // import the router
 import usersRouter from './routes/usersRouter.js'
 import productsRouter from './routes/productsRouter.js'
+
+dotenv.config()
 
 let port = process.env.PORT || 6161
 
