@@ -13,7 +13,7 @@ let port = process.env.PORT || 6161
 const app = express()
 app.use(cors({
     // BELOW, allow backend to accept information (also on front-end 'store')
-    origin:'http://localhost:8081',
+    origin:'https://nodeprojectfullstack.web.app/',
     credentials:true
 }))                                                                                                                                 
 app.use(express.json())

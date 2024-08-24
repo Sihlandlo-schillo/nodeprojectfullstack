@@ -33,15 +33,44 @@ const insertUser = async(req,res)=>{
         res.status(400).send('Error occured while adding a user')
     }
    }
+   
+   const deleteUser = async (req, res) => {
+    try {
+        const result = await deleteUserDB(req.params.id);
+        
+        // Check if the user was found and deleted
+        if (!result) {
+            return res.status(404).json({ message: 'User not found or already deleted' });
+        }
 
-const deleteUser = async(req,res)=>{
-    try{
-        res.json(await deleteUserDB(req.params.id))
-        res.statu(200).send('Deleted user successfully')
-    }catch(err){
-        res.status(400).send(err.message)
+        // Send a success response if the user was deleted
+        res.status(200).json({ message: 'Deleted user successfully', data: result });
+        
+    } catch (err) {
+        res.status(400).send(err.message);
     }
-}
+};
+
+//    const deleteUser = async (req, res) => {
+//     try {
+//         const result = await deleteUserDB(req.params.id);
+        
+//         // Send a single response
+//         res.status(200).json({ message: 'Deleted user successfully', data: result });
+        
+//     } catch (err) {
+//         res.status(400).send(err.message);
+//     }
+// };
+
+// const deleteUser = async(req,res)=>{
+//     try{
+//         res.json(await deleteUserDB(req.params.id))
+//         res.statu(200).send('Deleted user successfully')
+//     }catch(err){
+//         res.status(400).send(err.message)
+//     }
+// }
 
 const updateUser = async(req,res)=>{
     let {firstName,lastName,userAge,gender,role,email,password,profile} = req.body

@@ -38,15 +38,27 @@ const insertUserDB = async(firstName,lastName,userAge,gender,role,email,password
     }
 }
 
-const deleteUserDB = async (id)=>{
-    try{
-        let [data] = await pool.query('DELETE FROM users WHERE user_id = ?',[id])
-        return data
-    }catch(err){
-        console.log(err)
+const deleteUserDB = async (id) => {
+    try {
+        let [data] = await pool.query('DELETE FROM users WHERE user_id = ?', [id]);
+
+        // Check the number of affected rows
+        return data.affectedRows > 0; // Returns true if a row was deleted, false otherwise
+    } catch (err) {
+        console.log(err);
+        throw err;  // Re-throw the error to handle it in the calling function
     }
-    // we don't have to have 'let = [data] ...' as we only deleting, we don't want it to return anything as fetch
-}
+};
+
+// const deleteUserDB = async (id)=>{
+//     try{
+//         let [data] = await pool.query('DELETE FROM users WHERE user_id = ?',[id])
+//         return data
+//     }catch(err){
+//         console.log(err)
+//     }
+//     // we don't have to have 'let = [data] ...' as we only deleting, we don't want it to return anything as fetch
+// }
 
 const updateUserDB = async (firstName,lastName,userAge,gender,role,email,password,profile, id)=>{
     try{
