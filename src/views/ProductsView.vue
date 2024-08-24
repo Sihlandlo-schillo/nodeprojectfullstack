@@ -68,7 +68,7 @@ import { useStore } from 'vuex'
 
 const store = useStore()
 const searchQuery = ref('') 
-const sortOption = ref('priceLowToHigh')
+const sortOption = ref('default')
 
 const products = computed(() => store.state.products)
 
@@ -158,8 +158,10 @@ onMounted(() => {
 .card-title {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
-  font-family: "Shadows Into Light", cursive;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: 400;
+  display: flex;
+  justify-content: center;
 }
 
 .card-description {
@@ -185,8 +187,13 @@ onMounted(() => {
 
 .card-quantity {
   font-size: 14px;
-  font-family: "Almendra Display", serif;
   font-weight: 400;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.card-amount{
+  font-size: 14px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .search-container {

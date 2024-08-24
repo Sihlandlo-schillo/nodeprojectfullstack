@@ -16,7 +16,7 @@
     <!-- Products Table -->
     <div v-if="selectedView === 'products' && products?.length">
       <!-- Button trigger modal for add Product-->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">Add product</button>
+  <button type="button" @click.prevent="addProduct()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">Add product</button>
   <!-- Modal -->
   <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -81,9 +81,10 @@
             <td>{{ product.quantity }} left</td>
             <td>R{{ product.amount }}</td>
             <td class="hello">
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#modal-product-' + index">
+              <button type="button" @click="updateProduct(product.product_id)" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#modal-product-' + index">
                 Edit
               </button>
+
               <button class="btn btn-danger" @click="deleteProd(product.product_id)" >Deleted</button>
 
               <!-- Modal for Edit Product-->
@@ -119,8 +120,7 @@
                       </form>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn">Save changes</button>
+                      <button type="button" class="btn" data-bs-dismiss="modal">Save changes</button>
                     </div>
                   </div>
                 </div>
@@ -218,7 +218,7 @@
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#modal-user-' + index">
                 Edit
               </button>
-              <button class="btn btn-danger">Delete</button>
+              <button class="btn btn-danger" >Delete</button>
 
               <!-- Modal for edit product-->
               <div class="modal fade" :id="'modal-user-' + index" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
@@ -265,8 +265,8 @@
                       </form>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn">Save changes</button>
+                      <button type="button" class="btn" data-bs-dismiss="modal">Save changes</button>
+                      <!-- <button type="button" class="btn">Save changes</button> -->
                     </div>
                   </div>
                 </div>
@@ -337,6 +337,11 @@ function addUser(){
     console.log('clicked');
     
     store.dispatch('delete', id)
+  }
+  function updateProduct(id) {
+    console.log('clicked');
+    
+    store.dispatch('edit', id)
   }
 
 </script>
